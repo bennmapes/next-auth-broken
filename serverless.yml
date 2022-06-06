@@ -1,0 +1,2 @@
+esIntegrations:
+  component: "@sls-next/serverless-component@3.7.0" # it is recommended to pin the latest stable version of serverless-next.js

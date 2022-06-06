@@ -32,7 +32,10 @@
     "url": "https://github.com/elastic/next-eui-starter/issues"
   },
   "dependencies": {
-    "@elastic/eui": "^55.1.0"
+    "@elastic/eui": "^55.1.0",
+	"next-auth":"4.3.4",
+	"react-query": "^3.34.16",
+	"@sls-next/serverless-component": "^3.7.0"
   },
   "devDependencies": {
     "@elastic/datemath": "^5.0.3",

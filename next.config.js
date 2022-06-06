@@ -32,6 +32,8 @@ const nextConfig = {
    */
   basePath: pathPrefix,
 
+  target: "serverless",
+
   images: {
     loader: 'custom',
   },

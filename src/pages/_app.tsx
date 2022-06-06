@@ -7,6 +7,8 @@ import Chrome from '../components/chrome';
 import { Theme } from '../components/theme';
 import { globalStyes } from '../styles/global.styles';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { SessionProvider } from 'next-auth/react';
 /**
  * Next.js uses the App component to initialize pages. You can override it
  * and control the page initialization. Here use use it to render the
@@ -14,21 +16,28 @@ import { globalStyes } from '../styles/global.styles';
  *
  * @see https://nextjs.org/docs/advanced-features/custom-app
  */
-const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
-  <>
-    <Head>
-      {/* You can override this in other pages - see index.tsx for an example */}
-      <title>Next.js EUI Starter</title>
-    </Head>
-    <Global styles={globalStyes} />
-    <Theme>
-      <Chrome>
-        <EuiErrorBoundary>
-          <Component {...pageProps} />
-        </EuiErrorBoundary>
-      </Chrome>
-    </Theme>
-  </>
-);
+const EuiApp: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
+  // Create a client
+  const queryClient = new QueryClient();
+
+  return (
+    <SessionProvider session={pageProps.session}>
+      <QueryClientProvider client={queryClient}>
+        <Head>
+          {/* You can override this in other pages - see index.tsx for an example */}
+          <title>Elevated Signals -&gt; Komplyd</title>
+        </Head>
+        <Global styles={globalStyes} />
+        <Theme>
+          <Chrome>
+            <EuiErrorBoundary>
+              <Component {...pageProps} />
+            </EuiErrorBoundary>
+          </Chrome>
+        </Theme>
+      </QueryClientProvider>
+    </SessionProvider>
+  );
+};
 
 export default EuiApp;
